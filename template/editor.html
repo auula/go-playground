@@ -1,0 +1,265 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>go-playground</title>
+    <link rel="stylesheet" href="/static/mdui@v1.0.1/css/mdui.css"/>
+    <!--begin code mirror -->
+    <!--下面两个是使用Code Mirror必须引入的-->
+    <link rel="stylesheet" href="/static/codemirror@5.58.3/lib/codemirror.css"/>
+    <script src="/static/codemirror@5.58.3/lib/codemirror.js"></script>
+    <!--引入css文件，用以支持主题-->
+    <link rel="stylesheet" href="/static/codemirror@5.58.3/theme/dracula.css"/>
+    <link rel="stylesheet" href="/static/codemirror@5.58.3/theme/mdn-like.css"/>
+    <link rel="stylesheet" href="/static/codemirror@5.58.3/addon/hint/show-hint.css"/>
+    <script src="/static/codemirror@5.58.3/addon/selection/active-line.js"></script>
+    <!--支持代码折叠-->
+    <link rel="stylesheet" href="/static/codemirror@5.58.3/addon/fold/foldgutter.css"/>
+    <script src="/static/codemirror@5.58.3/addon/fold/foldcode.js"></script>
+    <script src="/static/codemirror@5.58.3/addon/fold/foldgutter.js"></script>
+    <script src="/static/codemirror@5.58.3/addon/fold/brace-fold.js"></script>
+    <script src="/static/codemirror@5.58.3/addon/fold/comment-fold.js"></script>
+    <!--Go代码高亮必须引入-->
+    <script src="/static/codemirror@5.58.3/mode/go/go.js"></script>
+    <!--括号匹配-->
+    <script src="/static/codemirror@5.58.3/addon/hint/show-hint.js"></script>
+    <script src="/static/codemirror@5.58.3/addon/hint/anyword-hint.js"></script>
+    <script src="/static/codemirror@5.58.3/addon/edit/matchbrackets.js"></script>
+    <!--end Code Mirror -->
+
+
+    <style>
+        /* CSS  fira code 字体引入 */
+
+        @import url('/static/firacode@v5.2/fira_code.css');
+
+        .CodeMirror,#console {
+            font-family: 'Fira Code', monospace;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body class="mdui-appbar-with-toolbar mdui-drawer-body-left mdui-theme-layout-auto">
+
+<div class="mdui-appbar mdui-appbar-fixed">
+    <div class="mdui-toolbar mdui-color-indigo">
+        <a href="javascript:;" id="toggle" class="mdui-btn mdui-btn-icon"><i
+                    class="mdui-icon material-icons">menu</i></a>
+        <a href="javascript:;" class="mdui-typo-headline">GoPlayground</a>
+        <div class="mdui-toolbar-spacer"></div>
+        <a href="javascript:running();" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'Running Code'}" ><i
+                    class="mdui-icon material-icons">play_arrow</i></a>
+        <a href="javascript:lockEditor();" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'Lock the editor'}"><i
+                    class="mdui-icon material-icons">lock</i></a>
+        <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'Create new file'}"><i
+                    class="mdui-icon material-icons">create_new_folder</i></a>
+        <a href="javascript:;" class="mdui-btn mdui-btn-icon more_vert"><i class="mdui-icon material-icons">more_vert</i></a>
+        <!-- 代码分享链接 -->
+        <ul class="mdui-menu" id="menu">
+            <li class="mdui-menu-item">
+                <a href="javascript:;" class="mdui-ripple">Share link</a>
+            </li>
+            <li class="mdui-menu-item">
+                <a href="javascript:;" class="mdui-ripple">Github gist</a>
+            </li>
+            <li class="mdui-menu-item">
+                <a href="javascript:;" class="mdui-ripple">About</a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+<!-- 默认抽屉栏在左侧 -->
+<div class="mdui-drawer" id="drawer">
+    <ul class="mdui-list">
+        <li class="mdui-list-item mdui-ripple">
+            <i class="mdui-list-item-icon mdui-icon material-icons">cast_connected</i>
+            <div class="mdui-list-item-content">创建房间</div>
+        </li>
+        <li class="mdui-list-item mdui-ripple">
+            <i class="mdui-list-item-icon mdui-icon material-icons">share</i>
+            <div class="mdui-list-item-content">分享记录</div>
+        </li>
+        <li class="mdui-subheader">其他设置</li>
+        <li class="mdui-list-item mdui-ripple">
+            <i class="mdui-list-item-icon mdui-icon material-icons">account_circle</i>
+            <div class="mdui-list-item-content">My Account</div>
+        </li>
+        <li class="mdui-list-item mdui-ripple">
+            <i class="mdui-list-item-icon mdui-icon material-icons">settings</i>
+            <div class="mdui-list-item-content">Settings</div>
+        </li>
+    </ul>
+</div>
+<!-- begin code -->
+<textarea class="mdui-container form-control " id="code" name="code">Hello codemirror</textarea>
+<!-- end code-->
+<div class="mdui-fab-wrapper" id="fab">
+    <button class="mdui-fab mdui-ripple mdui-color-pink-accent">
+        <i class="mdui-icon material-icons">code</i>
+        <i class="mdui-icon mdui-fab-opened material-icons">mode_edit</i>
+    </button>
+    <div class="mdui-fab-dial">
+        <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-pink"><i
+                    class="mdui-icon material-icons">backup</i>
+        </button>
+        <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-red"><i
+                    class="mdui-icon material-icons">bookmark</i>
+        </button>
+        <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-orange"><i class="mdui-icon material-icons">format_align_center</i>
+        </button>
+        <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-blue"><i class="mdui-icon material-icons">play_arrow</i>
+        </button>
+    </div>
+</div>
+<div class="mdui-dialog" id="console">
+    <div class="mdui-dialog-content">
+        <!-- 这里改成运行结果 -->
+        <p>=== RUN TestMergeSort</p>
+        <p>--- PASS: TestMergeSort (0.00s)</p>
+        <p>PASS</p>
+        <p>ok github.com/higker/leetcode-go/sort 0.007s</p>
+    </div>
+</div>
+
+<script src="/static/mdui@v1.0.1/js/mdui.js"></script>
+<script type="text/javascript">
+
+
+    var $ = mdui.$;
+    var cs = new mdui.Dialog('#console');
+    var tab = new mdui.Tab('#console');
+    var drawer = new mdui.Drawer('#drawer');
+
+    /*代码分享按钮*/
+    var share = new mdui.Menu('.more_vert', '#menu');
+
+    document.getElementById('toggle').addEventListener('click', function () {
+        drawer.toggle();
+    });
+    document.getElementById('console').addEventListener('open.mdui.dialog', function() {
+        tab.handleUpdate();
+    });
+
+    /*模式切换听器*/
+    var listeners = {
+        dark: function (mediaQueryList) {
+            if (mediaQueryList.matches) {
+                editor.setOption("theme", "dracula");
+            }
+        },
+        light: function (mediaQueryList) {
+            if (mediaQueryList.matches) {
+                editor.setOption("theme", "mdn-like");
+            }
+        }
+    }
+    var message = {
+        right: function (msg) {
+            mdui.snackbar({
+                message: msg,
+                position: 'right-bottom'
+            })
+        },
+        left: function (msg) {
+            mdui.snackbar({
+                message: msg,
+                position: 'left-bottom'
+            })
+        },
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(listeners.dark)
+    window.matchMedia('(prefers-color-scheme: light)').addListener(listeners.light)
+
+
+    /*悬浮球*/
+    var inst = new mdui.Fab('#fab');
+    // event
+    var fab = document.getElementById('fab');
+    fab.addEventListener('open.mdui.fab', function () {
+        console.log('open');
+    });
+
+    fab.addEventListener('opened.mdui.fab', function () {
+        console.log('opened');
+    });
+
+    fab.addEventListener('close.mdui.fab', function () {
+        console.log('close');
+    });
+
+    fab.addEventListener('closed.mdui.fab', function () {
+        console.log('closed');
+    });
+
+
+    /*编辑器上锁*/
+    function lockEditor() {
+        //editor.setOption('readOnly',true)
+        if (editor.getOption('readOnly')) {
+            editor.setOption('readOnly', false)
+            message.left("编辑器解锁.")
+        } else {
+            editor.setOption('readOnly', true)
+            message.left("编辑器上锁.")
+        }
+    }
+
+    /*运行代码*/
+    function running(){
+        cs.open()
+    }
+
+    //根据DOM元素的id构造出一个编辑器
+    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        mode: "text/x-go", //实现go代码高亮
+        indentUnit: 4, // 缩进单位为4
+        lineNumbers: true, //显示行号
+        theme: "dracula", //设置主题
+        styleActiveLine: true, //当前行高亮
+        lineWrapping: true, //代码折叠
+        foldGutter: true,
+        gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter", ""],
+        matchBrackets: true, //括号匹配
+        //readOnly: true,        //只读
+        // autofocus: true,
+        extraKeys: {
+            "Ctrl-Space": "autocomplete",
+            "Ctrl-T": function () {
+                console.log(editor.getValue())
+                alert(editor.getValue());
+            }
+        }, // Tab代码提示
+    });
+    editor.setSize('100%', '100%'); //设置代码框的长宽
+
+
+    // 测试代码内容
+    var content =
+        `package search
+
+// Ctrl-Space autocomplete
+// RemoveRep is Deduplication []string
+// https://www.fenghong.tech/blog/algorithm/go-slice-deduplicate/
+func RemoveRep(a []string) []string {
+	if len(a) == 0 {
+		return a
+	}
+	res := make([]string, 0, len(a))
+	tmp := map[string]struct{}{}
+	for _, v := range a {
+		if _, ok := tmp[v]; !ok {
+			tmp[v] = struct{}{}
+			res = append(res, v)
+		}
+	}
+	return res
+}`
+    editor.setValue(content); //先代码框的值清空
+    //editor.setValue(obj.scriptCode);    //给代码框赋值
+    //editor.setOption("readOnly", true);
+    //editor.setCode('clear')
+</script>
+</body>
+</html>

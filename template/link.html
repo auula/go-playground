@@ -1,0 +1,96 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>go-playground</title>
+    <link rel="stylesheet" href="/static/mdui@v1.0.1/css/mdui.css"/>
+</head>
+<body class="mdui-appbar-with-toolbar mdui-drawer-body-left mdui-theme-layout-auto">
+
+<div class="mdui-appbar mdui-appbar-fixed">
+    <div class="mdui-toolbar mdui-color-indigo">
+        <a href="javascript:;" id="toggle" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+        <a href="javascript:;" class="mdui-typo-headline">GoPlayground</a>
+        <div class="mdui-toolbar-spacer"></div>
+        <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'Code editor'}" ><i
+                    class="mdui-icon material-icons">code</i></a>
+    </div>
+</div>
+
+<!-- 默认抽屉栏在左侧 -->
+<div class="mdui-drawer" id="drawer">
+    <ul class="mdui-list">
+
+        <li class="mdui-list-item mdui-ripple">
+            <i class="mdui-list-item-icon mdui-icon material-icons">backup</i>
+            <div class="mdui-list-item-content">创建房间</div>
+        </li>
+        <li class="mdui-list-item mdui-ripple">
+            <i class="mdui-list-item-icon mdui-icon material-icons">share</i>
+            <div class="mdui-list-item-content">分享记录</div>
+        </li>
+        <li class="mdui-subheader">其他设置</li>
+        <li class="mdui-list-item mdui-ripple">
+            <i class="mdui-list-item-icon mdui-icon material-icons">account_circle</i>
+            <div class="mdui-list-item-content">My Account</div>
+        </li>
+        <li class="mdui-list-item mdui-ripple">
+            <i class="mdui-list-item-icon mdui-icon material-icons">settings</i>
+            <div class="mdui-list-item-content">Settings</div>
+        </li>
+    </ul>
+</div>
+
+
+<div class="mdui-container">
+    <div class="mdui-table" style="margin-top: 50px;">
+        <table class="mdui-table mdui-table-selectable">
+            <thead>
+            <tr>
+                <th>分享链接</th>
+                <th>备注信息</th>
+                <th>浏览次数</th>
+                <th>编 辑</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="mdui-table-row-selected">
+                <td>https://play.golang.org/p/HmnNoBf0p1z</td>
+                <td>排序分享</td>
+                <td>6.0</td>
+                <td>4.0</td>
+            </tr>
+            <tr>
+                <td>https://play.golang.org/p/HmnNoBf0p1z</td>
+                <td>在线试玩</td>
+                <td>237</td>
+                <td>37</td>
+            </tr>
+            <tr>
+                <td>https://play.golang.org/p/HmnNoBf0p1z</td>
+                <td>不知道什么</td>
+                <td>262</td>
+                <td>24</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+<script src="/static/mdui@v1.0.1/js/mdui.js"></script>
+<script type="text/javascript">
+    var $ = mdui.$;
+    var drawer = new mdui.Drawer('#drawer');
+    document.getElementById('toggle').addEventListener('click', function() {
+        drawer.toggle();
+    });
+    // anchorSelector 表示触发菜单的元素的 CSS 选择器或 DOM 元素
+    // menuSelector 表示菜单的 CSS 选择器或 DOM 元素
+    // options 表示组件的配置参数，见下面的参数列表
+
+</script>
+</body>
+</html>
