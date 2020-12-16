@@ -15,8 +15,6 @@ const (
 func Start() {
 	r := gin.Default()
 	mappingView(r)
+	mappingCompiler(r)
 	_ = r.Run(port)
 }
-
-
-

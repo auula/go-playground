@@ -19,7 +19,7 @@ var (
 	}
 )
 
-// mappingView 映射view视图
+// mappingView mapping router for view
 func mappingView(r *gin.Engine) {
 	r.StaticFS("/static", http.Dir("static"))
 	//加载模板
@@ -28,4 +28,3 @@ func mappingView(r *gin.Engine) {
 	r.GET("/index.html", editorView)
 	r.GET("/link", linkView)
 }
-
