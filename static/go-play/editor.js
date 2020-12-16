@@ -78,6 +78,22 @@ function lockEditor() {
 /*悬浮球*/
 const fab = new mdui.Fab('#fab');
 
+function shareCode() {
+    mdui.prompt('你的代码分享链接是:',
+
+        function (value) {
+            mdui.alert('你输入了：' + value + '，点击了确认按钮');
+        },
+        function (value) {
+            mdui.alert('你输入了：' + value + '，点击了取消按钮');
+        },
+        {
+            type: 'textarea',
+            defaultValue: 'https://github.com/higker/go-playground'
+        }
+    );
+}
+
 
 /*模式切换听器*/
 const listeners = {

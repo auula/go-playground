@@ -51,8 +51,6 @@
                     class="mdui-icon material-icons">play_arrow</i></a>
         <a href="javascript:lockEditor();" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'Lock the editor'}"><i
                     class="mdui-icon material-icons">lock</i></a>
-        <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'Create new file'}"><i
-                    class="mdui-icon material-icons">create_new_folder</i></a>
 
         <!-- gist代码分享链接生成 -->
         <a href="https://github.com/higker/go-playground" target="_blank"
@@ -74,22 +72,15 @@
 <!-- 默认抽屉栏在左侧 -->
 <div class="mdui-drawer" id="drawer">
     <ul class="mdui-list">
+
         <li class="mdui-list-item mdui-ripple">
-            <i class="mdui-list-item-icon mdui-icon material-icons">cast_connected</i>
-            <div class="mdui-list-item-content">创建房间</div>
-        </li>
-        <li class="mdui-list-item mdui-ripple">
-            <i class="mdui-list-item-icon mdui-icon material-icons">share</i>
-            <div class="mdui-list-item-content">分享记录</div>
+            <i class="mdui-list-item-icon mdui-icon material-icons">settings</i>
+            <div class="mdui-list-item-content">Settings</div>
         </li>
         <li class="mdui-subheader">其他帮助</li>
         <li class="mdui-list-item mdui-ripple">
             <i class="mdui-list-item-icon mdui-icon material-icons">account_circle</i>
-            <div class="mdui-list-item-content">My Account</div>
-        </li>
-        <li class="mdui-list-item mdui-ripple">
-            <i class="mdui-list-item-icon mdui-icon material-icons">settings</i>
-            <div class="mdui-list-item-content">Settings</div>
+            <div class="mdui-list-item-content">About</div>
         </li>
     </ul>
 </div>
@@ -102,15 +93,11 @@
         <i class="mdui-icon mdui-fab-opened material-icons">mode_edit</i>
     </button>
     <div class="mdui-fab-dial">
-        <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-pink"><i
-                    class="mdui-icon material-icons">backup</i>
+        <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-pink"  mdui-tooltip="{content: '分享代码', position: 'left'}"><i class="mdui-icon material-icons" onclick="shareCode()">share</i>
         </button>
-        <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-red"><i
-                    class="mdui-icon material-icons">bookmark</i>
+        <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-orange" mdui-tooltip="{content: '格式化代码', position: 'left'}"><i class="mdui-icon material-icons">format_align_center</i>
         </button>
-        <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-orange"><i class="mdui-icon material-icons">format_align_center</i>
-        </button>
-        <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-blue"><i class="mdui-icon material-icons">play_arrow</i>
+        <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-blue" mdui-tooltip="{content: '运行代码', position: 'left'}"><i class="mdui-icon material-icons">play_arrow</i>
         </button>
     </div>
 </div>
