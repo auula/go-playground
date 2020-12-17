@@ -5,16 +5,25 @@
 
 package router
 
-import "github.com/gin-gonic/gin"
-
-const (
-	port = ":8080"
+import (
+	"github.com/gin-gonic/gin"
+	"github.com/higker/go-playground/config"
 )
+
+var (
+	root *gin.Engine
+)
+
+func init() {
+	gin.SetMode(gin.DebugMode)
+	root = gin.New()
+	root.Use(gin.Logger(), gin.Recovery())
+}
 
 //Start 运行Web
 func Start() {
-	r := gin.Default()
-	mappingView(r)
-	mappingCompiler(r)
-	_ = r.Run(port)
+	mappingView(root)
+	mappingCompiler(root)
+	mappingFormat(root)
+	_ = root.Run(config.Port)
 }
