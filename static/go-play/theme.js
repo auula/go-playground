@@ -1,6 +1,6 @@
 
 
-const $ = mdui.$;
+
 const cs = new mdui.Dialog('#console');
 const drawer = new mdui.Drawer('#drawer');
 

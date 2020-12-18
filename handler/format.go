@@ -6,7 +6,6 @@
 package handler
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/higker/go-playground/response"
 	"go/format"
@@ -19,11 +18,6 @@ type fmtResponse struct {
 
 func FormatCode(ctx *gin.Context) {
 	form := ctx.PostForm("body")
-	fmt.Println(form)
-	if len(form) <= 14 {
-		response.FailJson(ctx, fmtResponse{Error: "code body error."})
-		return
-	}
 	source, err := format.Source([]byte(form))
 	if err != nil {
 		response.FailJson(ctx, fmtResponse{Error: err.Error()})
