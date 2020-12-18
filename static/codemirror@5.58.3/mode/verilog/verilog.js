@@ -36,7 +36,7 @@ CodeMirror.defineMode("verilog", function(config, parserConfig) {
     "dist do edge else end endcase endchecker endclass endclocking endconfig endfunction endgenerate endgroup " +
     "endinterface endmodule endpackage endprimitive endprogram endproperty endspecify endsequence endtable endtask " +
     "enum event eventually expect export extends extern final first_match for force foreach forever fork forkjoin " +
-    "function generate genvar global highz0 highz1 if iff ifnone ignore_bins illegal_bins implements implies import " +
+    "function generate genvar service highz0 highz1 if iff ifnone ignore_bins illegal_bins implements implies import " +
     "incdir include initial inout input inside instance int integer interconnect interface intersect join join_any " +
     "join_none large let liblist library local localparam logic longint macromodule matches medium modport module " +
     "nand negedge nettype new nexttime nmos nor noshowcancelled not notif0 notif1 null or output package packed " +

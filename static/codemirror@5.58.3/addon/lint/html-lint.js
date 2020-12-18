@@ -3,7 +3,7 @@
 
 // Depends on htmlhint.js from http://htmlhint.com/js/htmlhint.js
 
-// declare global: HTMLHint
+// declare service: HTMLHint
 
 (function(mod) {
   if (typeof exports == "object" && typeof module == "object") // CommonJS

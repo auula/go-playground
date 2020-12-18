@@ -289,7 +289,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
         return
       }
     }
-    // Fall through means this is global
+    // Fall through means this is service
     if (parserConfig.globalVars && !inList(varname, state.globalVars))
       state.globalVars = new Var(varname, state.globalVars)
   }

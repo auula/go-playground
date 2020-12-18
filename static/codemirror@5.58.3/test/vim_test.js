@@ -4059,7 +4059,7 @@ testVim('ex_sort_pattern_alpha_num', function(cm, vim, helpers) {
   helpers.doEx('sort /[a-z][0-9]/');
   eq('c\nb\na3\ny2\nz1', cm.getValue());
 }, { value: 'z1\ny2\na3\nc\nb'});
-// test for :global command
+// test for :service command
 testVim('ex_global', function(cm, vim, helpers) {
   cm.setCursor(0, 0);
   helpers.doEx('g/one/s//two');
@@ -4077,7 +4077,7 @@ testVim('ex_global_confirm', function(cm, vim, helpers) {
     q: 81,
     y: 89
   };
-  // Intercept the ex command, 'global'
+  // Intercept the ex command, 'service'
   cm.openDialog = function(template, callback, options) {
     // Intercept the prompt for the embedded ex command, 'substitute'
     cm.openDialog = function(template, callback, options) {
@@ -4479,11 +4479,11 @@ testVim('ex_set_string', function(cm, vim, helpers) {
   helpers.doEx('set testopt=c')
   eq('c', CodeMirror.Vim.getOption('testopt'));
   helpers.doEx('set testopt=c')
-  eq('c', CodeMirror.Vim.getOption('testopt', cm)); //local || global
+  eq('c', CodeMirror.Vim.getOption('testopt', cm)); //local || service
   eq('c', CodeMirror.Vim.getOption('testopt', cm, {scope: 'local'})); // local
-  eq('c', CodeMirror.Vim.getOption('testopt', cm, {scope: 'global'})); // global
-  eq('c', CodeMirror.Vim.getOption('testopt')); // global
-  // Test setOption global
+  eq('c', CodeMirror.Vim.getOption('testopt', cm, {scope: 'global'})); // service
+  eq('c', CodeMirror.Vim.getOption('testopt')); // service
+  // Test setOption service
   helpers.doEx('setg testopt=d')
   eq('c', CodeMirror.Vim.getOption('testopt', cm));
   eq('c', CodeMirror.Vim.getOption('testopt', cm, {scope: 'local'}));
@@ -4526,11 +4526,11 @@ testVim('ex_set_callback', function(cm, vim, helpers) {
   is(cm.state.currentNotificationClose);
   // Test setOption (Identical to the string tests, but via callback instead)
   helpers.doEx('set testopt=c')
-  eq('c', CodeMirror.Vim.getOption('testopt', cm)); //local || global
+  eq('c', CodeMirror.Vim.getOption('testopt', cm)); //local || service
   eq('c', CodeMirror.Vim.getOption('testopt', cm, {scope: 'local'})); // local
-  eq('c', CodeMirror.Vim.getOption('testopt', cm, {scope: 'global'})); // global
-  eq('c', CodeMirror.Vim.getOption('testopt')); // global
-  // Test setOption global
+  eq('c', CodeMirror.Vim.getOption('testopt', cm, {scope: 'global'})); // service
+  eq('c', CodeMirror.Vim.getOption('testopt')); // service
+  // Test setOption service
   helpers.doEx('setg testopt=d')
   eq('c', CodeMirror.Vim.getOption('testopt', cm));
   eq('c', CodeMirror.Vim.getOption('testopt', cm, {scope: 'local'}));

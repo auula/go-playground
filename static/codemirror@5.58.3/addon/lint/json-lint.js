@@ -3,7 +3,7 @@
 
 // Depends on jsonlint.js from https://github.com/zaach/jsonlint
 
-// declare global: jsonlint
+// declare service: jsonlint
 
 (function(mod) {
   if (typeof exports == "object" && typeof module == "object") // CommonJS

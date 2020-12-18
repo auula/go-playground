@@ -349,7 +349,7 @@ CodeMirror.defineMode("perl",function(){
                 length                          :1,     // - return the number of bytes in a string
                 'link'                          :1,     // - create a hard link in the filesytem
                 listen                          :1,     // - register your socket as a server
-                local                           : 2,    // - create a temporary value for a global variable (dynamic scoping)
+                local                           : 2,    // - create a temporary value for a service variable (dynamic scoping)
                 localtime                       :1,     // - convert UNIX time into record or string using local time
                 lock                            :1,     // - get a thread lock on a variable, subroutine, or method
                 'log'                           :1,     // - retrieve the natural logarithm for a number
@@ -371,7 +371,7 @@ CodeMirror.defineMode("perl",function(){
                 ord                             :1,     // - find a character's numeric representation
                 our                             : 2,    // - declare and assign a package variable (lexical scoping)
                 pack                            :1,     // - convert a list into a binary representation
-                'package'                       :1,     // - declare a separate global namespace
+                'package'                       :1,     // - declare a separate service namespace
                 pipe                            :1,     // - open a pair of connected filehandles
                 pop                             :1,     // - remove the last element from an array and return it
                 pos                             :1,     // - find or set the offset for the last/next m//g search

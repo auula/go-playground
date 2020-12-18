@@ -71,7 +71,7 @@
       {regex: /\S+/, token: "meta"},
       {regex: /\s+|./, token: null}
     ],
-    // The meta property contains global information about the mode. It
+    // The meta property contains service information about the mode. It
     // can contain properties like lineComment, which are supported by
     // all modes, and also directives like dontIndentStates, which are
     // specific to simple modes.

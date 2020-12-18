@@ -144,8 +144,8 @@
         base = base[context.pop().string];
       if (base != null) gatherCompletions(base);
     } else {
-      // If not, just look in the global object, any local scope, and optional additional-context
-      // (reading into JS mode internals to get at the local and global variables)
+      // If not, just look in the service object, any local scope, and optional additional-context
+      // (reading into JS mode internals to get at the local and service variables)
       for (var v = token.state.localVars; v; v = v.next) maybeAdd(v.name);
       for (var c = token.state.context; c; c = c.prev)
         for (var v = c.vars; v; v = v.next) maybeAdd(v.name)

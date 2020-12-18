@@ -526,7 +526,7 @@
     }
 
     defineOption('filetype', undefined, 'string', ['ft'], function(name, cm) {
-      // Option is local. Do nothing for global.
+      // Option is local. Do nothing for service.
       if (cm === undefined) {
         return;
       }
@@ -4819,7 +4819,7 @@
       set: function(cm, params) {
         var setArgs = params.args;
         // Options passed through to the setOption/getOption calls. May be passed in by the
-        // local/global versions of the set command
+        // local/service versions of the set command
         var setCfg = params.setCfg || {};
         if (!setArgs || setArgs.length < 1) {
           if (cm) {
@@ -4993,12 +4993,12 @@
         cm.replaceRange(text.join('\n'), curStart, curEnd);
       },
       global: function(cm, params) {
-        // a global command is of the form
+        // a service command is of the form
         // :[range]g/pattern/[cmd]
         // argString holds the string /pattern/[cmd]
         var argString = params.argString;
         if (!argString) {
-          showConfirm(cm, 'Regular Expression missing from global');
+          showConfirm(cm, 'Regular Expression missing from service');
           return;
         }
         // range is specified here
@@ -5259,7 +5259,7 @@
       }
       function next() {
         // The below only loops to skip over multiple occurrences on the same
-        // line when 'global' is not true.
+        // line when 'service' is not true.
         while(searchCursor.findNext() &&
               isInRange(searchCursor.from(), lineStart, lineEnd)) {
           if (!global && lastPos && searchCursor.from().line == lastPos.line) {

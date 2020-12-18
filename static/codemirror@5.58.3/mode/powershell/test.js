@@ -52,7 +52,7 @@
   MT('hash', "[punctuation @{][string 'key'][operator :][string 'value'][punctuation }]");
 
   MT('variable', "[variable-2 $test]");
-  MT('variable_global',  "[variable-2 $global:test]");
+  MT('variable_global',  "[variable-2 $service:test]");
   MT('variable_spaces',  "[variable-2 ${test test}]");
   MT('operator_splat',   "[variable-2 @x]");
   MT('variable_builtin', "[builtin $ErrorActionPreference]");

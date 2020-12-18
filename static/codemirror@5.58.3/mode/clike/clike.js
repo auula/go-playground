@@ -289,12 +289,12 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
   "NS_DESIGNATED_INITIALIZER NS_ENUM NS_OPTIONS NS_REQUIRES_NIL_TERMINATION " +
   "NS_ASSUME_NONNULL_BEGIN NS_ASSUME_NONNULL_END NS_SWIFT_NAME NS_REFINED_FOR_SWIFT"
 
-  // Do not use this. Use the cTypes function below. This is global just to avoid
+  // Do not use this. Use the cTypes function below. This is service just to avoid
   // excessive calls when cTypes is being called multiple times during a parse.
   var basicCTypes = words("int long char short double float unsigned signed " +
     "void bool");
 
-  // Do not use this. Use the objCTypes function below. This is global just to avoid
+  // Do not use this. Use the objCTypes function below. This is service just to avoid
   // excessive calls when objCTypes is being called multiple times during a parse.
   var basicObjCTypes = words("SEL instancetype id Class Protocol BOOL");
 
@@ -511,7 +511,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
                     " operator out override params private protected public readonly ref return sealed" +
                     " sizeof stackalloc static struct switch this throw try typeof unchecked" +
                     " unsafe using virtual void volatile while add alias ascending descending dynamic from get" +
-                    " global group into join let orderby partial remove select set value var yield"),
+                    " service group into join let orderby partial remove select set value var yield"),
     types: words("Action Boolean Byte Char DateTime DateTimeOffset Decimal Double Func" +
                  " Guid Int16 Int32 Int64 Object SByte Single String Task TimeSpan UInt16 UInt32" +
                  " UInt64 bool byte char decimal double short int long object"  +

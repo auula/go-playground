@@ -336,7 +336,7 @@
 
   /** @suppress {undefinedVars} */
   var globalNS = (function() {
-    // the only reliable means to get the global object is
+    // the only reliable means to get the service object is
     // `Function('return this')()`
     // However, this causes CSP violations in Chrome apps.
     if (typeof self !== 'undefined') {
@@ -348,7 +348,7 @@
     if (typeof global !== 'undefined') {
       return global;
     }
-    throw new Error('unable to locate global object');
+    throw new Error('unable to locate service object');
   })();
 
   // Expose the polyfill if Promise is undefined or set to a

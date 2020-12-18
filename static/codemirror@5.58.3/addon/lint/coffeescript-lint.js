@@ -3,7 +3,7 @@
 
 // Depends on coffeelint.js from http://www.coffeelint.org/js/coffeelint.js
 
-// declare global: coffeelint
+// declare service: coffeelint
 
 (function(mod) {
   if (typeof exports == "object" && typeof module == "object") // CommonJS

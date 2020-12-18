@@ -13,7 +13,7 @@
 
 // Depends on js-yaml.js from https://github.com/nodeca/js-yaml
 
-// declare global: jsyaml
+// declare service: jsyaml
 
 CodeMirror.registerHelper("lint", "yaml", function(text) {
   var found = [];

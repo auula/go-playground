@@ -115,7 +115,7 @@ CodeMirror.defineMode("ruby", function(config) {
       } else if (stream.eat(/\d/)) {
         stream.eat(/\d/);
       } else {
-        stream.next(); // Must be a special global like $: or $!
+        stream.next(); // Must be a special service like $: or $!
       }
       return "variable-3";
     } else if (/[a-zA-Z_\xa1-\uffff]/.test(ch)) {

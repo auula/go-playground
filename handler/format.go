@@ -5,10 +5,13 @@
 
 package handler
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"github.com/higker/go-playground/response"
+)
 
 var formatCode gin.HandlerFunc
 
 func FormatCode(ctx *gin.Context) {
-
+	response.OkJson(ctx, response.NewResponse(200, "TEST"))
 }

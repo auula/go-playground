@@ -1,7 +1,7 @@
 import StringStream from "../../util/StringStream.js"
 import * as modeMethods from "../../modes.js"
 
-// declare global: globalThis, CodeMirror
+// declare service: globalThis, CodeMirror
 
 // Create a minimal CodeMirror needed to use runMode, and assign to root.
 var root = typeof globalThis !== 'undefined' ? globalThis : window

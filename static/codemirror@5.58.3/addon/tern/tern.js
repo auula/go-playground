@@ -52,7 +52,7 @@
     mod(CodeMirror);
 })(function(CodeMirror) {
   "use strict";
-  // declare global: tern
+  // declare service: tern
 
   CodeMirror.TernServer = function(options) {
     var self = this;
