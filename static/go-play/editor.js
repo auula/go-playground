@@ -94,6 +94,11 @@ function shareCode() {
     );
 }
 
+function formatCode() {
+    $.post("/format", {body: $("code").val()}, function (result) {
+        editor.setValue(result.data.Body);
+    });
+}
 
 /*模式切换听器*/
 const listeners = {

@@ -12,5 +12,5 @@ import (
 
 // mappingFormat mapping router for code format api
 func mappingFormat(r *gin.Engine) {
-	r.GET("/format", handler.FormatCode)
+	r.POST("/format", handler.FormatCode)
 }
