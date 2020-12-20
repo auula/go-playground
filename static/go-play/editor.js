@@ -80,7 +80,6 @@ const fab = new mdui.Fab('#fab');
 
 function shareCode() {
     mdui.prompt('你的代码分享链接是:',
-
         function (value) {
             mdui.alert('你输入了：' + value + '，点击了确认按钮');
         },
