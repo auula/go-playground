@@ -42,7 +42,7 @@ var (
 // 这个函数最好是低权限用户运行，不然会出现远程执行漏洞，高级漏洞
 func Builder(sourceCode []byte) (string, error) {
 	var dockerImageId string
-	file, err := os.OpenFile("workspace/test.go", os.O_WRONLY, 0666)
+	file, err := os.OpenFile("workspace/test.go", os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0666)
 	if err != nil {
 		return "", err
 	}
@@ -56,8 +56,18 @@ func Builder(sourceCode []byte) (string, error) {
 	}
 	source.Close()
 	dockerImageId = strconv.Itoa(int(time.Now().UnixNano()))
-	cmd := "cd workspace && docker build -t goplay:" + dockerImageId + " . && docker run goplay:" + dockerImageId
+	cmd := "cd workspace && docker build -t goplay:" + dockerImageId
 	output, err := exec.Command("/bin/bash", "-c", cmd).Output()
+	if err != nil {
+		return "", err
+	}
+	cmd = "docker run goplay:" + dockerImageId
+	output, err = exec.Command("/bin/bash", "-c", cmd).Output()
+	if err != nil {
+		return "", err
+	}
+	cmd = "docker rmi -f goplay:" + dockerImageId
+	output, err = exec.Command("/bin/bash", "-c", cmd).Output()
 	if err != nil {
 		return "", err
 	}
