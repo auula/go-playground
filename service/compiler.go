@@ -8,7 +8,9 @@ package service
 import (
 	"os"
 	"os/exec"
+	"strconv"
 	"sync"
+	"time"
 )
 
 var (
@@ -17,6 +19,27 @@ var (
 	lock   sync.Mutex
 )
 
+//func Builder(sourceCode []byte) (string, error) {
+//	var dockerImageId string
+//	file, err := os.OpenFile("workspace/test.go", os.O_WRONLY, 0666)
+//	if err != nil {
+//		return "", err
+//	}
+//	lock.Lock()
+//	defer lock.Unlock()
+//	source = file
+//	_, err = source.Write(sourceCode)
+//	source.Close()
+//	if err != nil {
+//		return "", err
+//	}
+//	source.Close()
+//	cmd := ""
+//	exec.Command("docker", "build")
+//	return "", nil
+//}
+
+// 这个函数最好是低权限用户运行，不然会出现远程执行漏洞，高级漏洞
 func Builder(sourceCode []byte) (string, error) {
 	var dockerImageId string
 	file, err := os.OpenFile("workspace/test.go", os.O_WRONLY, 0666)
@@ -32,7 +55,11 @@ func Builder(sourceCode []byte) (string, error) {
 		return "", err
 	}
 	source.Close()
-	cmd := ""
-	exec.Command("docker", "build")
-	return "", nil
+	dockerImageId = strconv.Itoa(int(time.Now().UnixNano()))
+	cmd := "cd workspace && docker build -t goplay:" + dockerImageId + " . && docker run goplay:" + dockerImageId
+	output, err := exec.Command("/bin/bash", "-c", cmd).Output()
+	if err != nil {
+		return "", err
+	}
+	return string(output), nil
 }

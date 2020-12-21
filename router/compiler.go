@@ -8,5 +8,5 @@ import (
 // mappingCompiler mapping router for go compiler
 func mappingCompiler(r *gin.Engine) {
 	//TODO
-	r.POST("/compile", handler.Compile)
+	r.GET("/compile", handler.Compile)
 }
