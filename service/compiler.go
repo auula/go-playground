@@ -66,10 +66,10 @@ func Builder(sourceCode []byte) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	cmd = "docker rmi -f goplay:" + dockerImageId
-	output, err = exec.Command("/bin/bash", "-c", cmd).Output()
-	if err != nil {
-		return "", err
-	}
+	//cmd = "docker rmi -f goplay:" + dockerImageId
+	//output, err = exec.Command("/bin/bash", "-c", cmd).Output()
+	//if err != nil {
+	//	return "", err
+	//}
 	return string(output), nil
 }
